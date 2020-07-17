@@ -9,3 +9,19 @@ V
 pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
 f
 6src/main/java/by/jrr/repository/ProductRepository.java,9\5\95fb186dec05d828a72a011bf3c8e45864c5b41f
+i
+9src/main/java/by/jrr/service/check_fields/CheckPrice.java,0\b\0b74daf5ddc8871da1b1ca49c970a91fbde11695
+l
+<src/main/java/by/jrr/service/check_fields/CheckDiscount.java,2\0\200428158b0b2197f3eab8e40a5265c4161030ea
+h
+8src/main/java/by/jrr/service/check_fields/CheckName.java,0\f\0f7dcf98363dc10bf84ccc17b8fe267b7310a99a
+k
+;src/main/java/by/jrr/repository/ShoppingCartRepository.java,1\9\1928889677523f2a9d32bf841409cd5739585b6f
+e
+5src/main/java/by/jrr/service/ShoppingCartService.java,2\c\2c6789edfdc2eb051dbefa5ee94e95d6f9ca8435
+O
+src/main/webapp/WEB-INF/web.xml,2\e\2e22b6edd746fa3dc40ad7276c87c8d87d72a392
+M
+src/main/java/by/jrr/App.java,4\9\49228cfb19e0c2296fd6e2d0fcfe6ded1f7cb324
+c
+3src/main/java/by/jrr/controller/MainController.java,f\9\f9a1de18b1f1f44e945d2aaa07c70380d6f22f6a

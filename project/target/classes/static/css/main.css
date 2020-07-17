@@ -1,0 +1,179 @@
+nav li > a, .btn {
+	transition: 1s;
+}
+
+nav li {
+	width: fit-content;
+}
+
+
+.content > .container {
+	position: absolute;
+	z-index: -999;
+}
+
+.table {
+	margin-top: 5vh;
+}
+
+table {
+	border: solid 1px #dee2e6;
+}
+
+.table tbody tr:hover {
+	transition: 1.5s;
+	background-color: #dee2e6;
+}
+
+p[type="button"] {
+	margin: 0;
+	padding: 0;
+	color: #007bff;
+}
+
+p[type="button"]:hover {
+	transition: 1s;
+	color: #0037ff;
+}
+
+.sort {
+	margin-top: 5vh;
+}
+
+.find {
+	margin-top: 5%;
+}
+
+.sorting, .find {
+	border: solid 1px #dee2e6;
+	border-radius: 5px;
+}
+
+.h-2 {
+	background-color: #f4f4f4;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	text-align: center;
+}
+
+.h-2 h2 {
+	font-size: 20px;
+}
+
+.btn-success:hover {
+	background-color: #007bff;
+}
+
+.btn-primary:hover {
+	background-color: #218838;
+}
+
+.custom-radio {
+	margin-left: 10%;
+	margin-top: 10px;
+}
+
+.btn-sort {
+	margin: 15% 0 5% 70%;
+}
+
+.btn-success {
+	display: block;
+	height: fit-content;
+	float: right;
+}
+
+.fade {
+	transition: 0.75s;
+}
+
+
+.form-group {
+	margin-top: 15px;
+	margin-left: 10%;
+}
+
+.form-control {
+	width: fit-content;
+}
+
+.form-group .btn {
+	margin-left: 60%;
+	margin-top: 10px;
+}
+
+h6 {
+	margin-bottom: 10px;
+}
+
+.modal-body input {
+	margin-bottom: 25px;
+	border-radius: 5px;
+}
+
+.modal-body select {
+	margin-bottom: 10px;
+}
+
+.name, .category, .price, .discount {
+	display: inline-block;
+}
+
+.category, .discount {
+	margin-left: 40px;
+}
+
+.text-area {
+	padding-right: 40%;
+	height: 60px;
+}
+
+.delete input {
+	float: right;
+	margin-top: 20px;
+}
+
+input::-webkit-input-placeholder       {opacity: 1; transition: opacity 0.3s ease;}
+input::-moz-placeholder                {opacity: 1; transition: opacity 0.3s ease;}
+input:-moz-placeholder                 {opacity: 1; transition: opacity 0.3s ease;}
+input:-ms-input-placeholder            {opacity: 1; transition: opacity 0.3s ease;}
+input:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+input:focus::-moz-placeholder          {opacity: 0; transition: opacity 0.3s ease;}
+input:focus:-moz-placeholder           {opacity: 0; transition: opacity 0.3s ease;}
+input:focus:-ms-input-placeholder      {opacity: 0; transition: opacity 0.3s ease;}
+
+input::-webkit-input-placeholder {
+	text-indent: 0px;
+	transition: text-indent 300ms;
+}
+
+input:-moz-placeholder {
+	text-indent: 0px;
+	transition: text-indent 300ms;
+}
+
+input::-moz-placeholder {
+	text-indent: 0px;
+	transition: text-indent 300ms;
+}
+
+input:-ms-input-placeholder {
+	text-indent: 0px;
+	transition: text-indent 300ms;
+}
+
+input:focus::-webkit-input-placeholder {
+	text-indent: 500px;
+}
+
+input:focus:-moz-placeholder {
+	text-indent: 500px;
+}
+
+input:focus::-moz-placeholder {
+	text-indent: 500px;
+}
+
+input:focus:-ms-input-placeholder {
+	text-indent: 500px;
+}

@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="shortcut icon" href="ico/basket.ico" type="image/x-icon">
+
+    <title>Products</title>
+</head>
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a href="#" class="navbar-brand"><svg class ="bi bi-braces" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.114 8.063V7.9c1.005-.102 1.497-.615 1.497-1.6V4.503c0-1.094.39-1.538 1.354-1.538h.273V2h-.376C3.25 2 2.49 2.759 2.49 4.352v1.524c0 1.094-.376 1.456-1.49 1.456v1.299c1.114 0 1.49.362 1.49 1.456v1.524c0 1.593.759 2.352 2.372 2.352h.376v-.964h-.273c-.964 0-1.354-.444-1.354-1.538V9.663c0-.984-.492-1.497-1.497-1.6zM13.886 7.9v.163c-1.005.103-1.497.616-1.497 1.6v1.798c0 1.094-.39 1.538-1.354 1.538h-.273v.964h.376c1.613 0 2.372-.759 2.372-2.352v-1.524c0-1.094.376-1.456 1.49-1.456V7.332c-1.114 0-1.49-.362-1.49-1.456V4.352C13.51 2.759 12.75 2 11.138 2h-.376v.964h.273c.964 0 1.354.444 1.354 1.538V6.3c0 .984.492 1.497 1.497 1.6z"></path>
+        </svg></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a href="#" class="nav-link">Get all products</a></li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/show_product}" method="POST">
+                <label>
+                    <input type="text" class="form-control mr-sm-2" placeholder="Search product by id" name="id">
+                </label>
+                <input type="submit" class="btn btn-outline-success my-2 my-sm-0" value="Search">
+            </form>
+        </div>
+    </nav>
+</header>
+
+<section class="tables">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-9">
+                <table class="table">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Category</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Discount</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.id}">ID</td>
+                        <td th:text="${product.name}">Mark</td>
+                        <td th:text="${product.category}">Otto</td>
+                        <td th:text="${product.price}">Price</td>
+                        <td th:text="${product.discount}">Discount</td>
+                        <td>
+                            <p type="button" data-toggle="modal" data-target="#exampleModal">Open</p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalChange">Change product field</button>
+                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#exampleModalSave">Set New Product</button>
+            </div>
+            <div class="col-sm-3 sort">
+                <div class="sorting">
+                    <div>
+                        <div class="h-2"><h2>Sort products by...</h2></div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio1">Price</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio2">Discount</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio3">Category</label>
+                        </div>
+                        <button class="btn btn-primary btn-sort">Sort</button>
+                    </div>
+                </div>
+                <div class="find">
+                    <div class="h-2"><h2>Find products by...</h2></div>
+                    <div class="form-group">
+                        <label for="inputState">Category</label>
+                        <select id="inputState" class="form-control">
+                            <option th:each="category : ${categories}" th:value="${category}" th:text="${category}"></option>
+                        </select>
+                        <div class="btn btn-primary">Search</div>
+                    </div>
+                </div>
+                <div class="delete">
+                    <form action="#" th:action="@{/delete}" method="post">
+                        <input type="submit" class="btn btn-danger" value="Delete all products">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade" id="exampleModalChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change product field</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input_id">
+                    <h6>Input id product</h6>
+                    <label>
+                        <input type="text" class="form-control" placeholder="Input id">
+                    </label>
+                </div>
+                <div class="choose_field">
+                    <h6>Choose field</h6>
+                    <label>
+                        <select class="form-control form-control-sm">
+                            <option>Name</option>
+                            <option>Category</option>
+                            <option>Price</option>
+                            <option>Discount</option>
+                            <option>Description</option>
+                        </select>
+                    </label>
+                    <label>
+                        <input type="text" class="form-control" placeholder="Input new value">
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="#" th:action="@{/save_product}" th:object="${product}" method="post">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Set new product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="set-product">
+                    <div class="name">
+                        <h6>Set name</h6>
+                        <label>
+                            <input type="text" class="form-control" placeholder="Input name" th:field="*{name}">
+                        </label>
+                    </div>
+                    <div class="category">
+                        <h6>Choose category</h6>
+                        <label>
+                            <select class="form-control form-control-sm">
+                                <option th:each="category : ${categories}" th:value="${category}" th:text="${category}"></option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="price">
+                        <h6>Set price</h6>
+                        <label>
+                            <input type="text" class="form-control" placeholder="Set price" th:field="*{price}">
+                        </label>
+                    </div>
+                    <div class="discount">
+                        <h6>Set discount</h6>
+                        <label>
+                            <input type="text" class="form-control" placeholder="Set discount" th:field="*{discount}">
+                        </label>
+                    </div>
+                    <h6>Set description</h6>
+                    <label>
+                        <input type="text" class="form-control text-area" placeholder="Set description" th:field="*{description}">
+                    </label>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" placeholder="Set product">
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Name product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="description-modal">
+                    <h6>Description</h6>
+                    <p></p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn btn-primary" placeholder="Save changes">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</body>
+</html>
