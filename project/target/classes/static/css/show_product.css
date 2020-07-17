@@ -1,0 +1,51 @@
+.show_product {
+    padding-top: 50px;
+    text-align: center;
+}
+
+h1 {
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.description {
+    margin-bottom: 45px;
+}
+
+.description p  {
+    margin: 0 50px;
+    font-size: 16px;
+    display: inline-block;
+}
+
+.text-description {
+    color: #8bc34a;
+}
+
+.category {
+    text-transform: lowercase;
+}
+
+section a {
+    color: #ffffff !important;
+}
+
+a.btn-primary {
+    float: left;
+}
+
+a.btn-danger {
+    float: right;
+}
+
+#exampleModalChange {
+    transition: 2s;
+}
+
+.form-control {
+    margin-left: 25px;
+}

@@ -17,7 +17,7 @@ public class MainController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/")
+    @GetMapping({"/", "/main"})
     public String main(Model model) {
         Iterable<Product> iterable = productRepository.findAll();
         model.addAttribute("products", iterable);
@@ -31,7 +31,9 @@ public class MainController {
         Optional<Product> iterable = productRepository.findById(id);
         ArrayList<Product> product = new ArrayList<>();
         iterable.ifPresent(product::add);
+
         model.addAttribute("product", product.get(0));
+        model.addAttribute("categories", Category.values());
         return "show_product";
     }
 

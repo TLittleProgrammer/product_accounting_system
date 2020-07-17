@@ -20,7 +20,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active"><a href="#" class="nav-link">Get all products</a></li>
+                    <li class="nav-item"><a href="main" class="nav-link">Get all products</a></li>
+                    <li class="nav-item active"><a href="#" class="nav-link">Product with id <span th:text="${product.id}"></span></a></li>
                 </ul>
                 <form class="form-inline my-2 my-lg-0" action="#" th:action="@{/main}" method="POST">
                     <label>
@@ -38,11 +39,54 @@
                 <div class="col-sm-12">
                     <h1 class="name_product" th:text="${product.name}"></h1>
                     <hr>
-                    <p th:text="${product.description}"></p>
+                    <div class="description text-primary">
+                        <p>Price: <span class="price" th:text="${product.price}"></span>$</p>
+                        <p>Discount: <span class="discount" th:text="${product.discount}"></span>%</p>
+                        <p>Category: <span class="category" th:text="${product.category}"></span></p>
+                    </div>
+                    <p class="text-description" th:text="${product.description}"></p>
+                    <hr>
+                    <a class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalChange">Change some product fields</a>
+                    <a class="btn btn-danger" href="'delete/' + ${product.id}">Delete Product</a>
                 </div>
             </div>
         </div>
     </section>
+
+
+
+    <div class="modal fade" id="exampleModalChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Change product field</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="choose_field">
+                        <h6>Choose field</h6>
+                        <label>
+                            <select class="form-control form-control-sm">
+                                <option>Name</option>
+                                <option>Category</option>
+                                <option>Price</option>
+                                <option>Discount</option>
+                                <option>Description</option>
+                            </select>
+                        </label>
+                        <label>
+                            <input type="text" class="form-control" placeholder="Input new value">
+                        </label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
