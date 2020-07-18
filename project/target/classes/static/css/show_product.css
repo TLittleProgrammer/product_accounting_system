@@ -38,14 +38,10 @@ a.btn-primary {
     float: left;
 }
 
-a.btn-danger {
+input.btn-danger {
     float: right;
 }
 
 #exampleModalChange {
     transition: 2s;
-}
-
-.form-control {
-    margin-left: 25px;
 }

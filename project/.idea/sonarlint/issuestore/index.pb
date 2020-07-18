@@ -25,3 +25,7 @@ M
 src/main/java/by/jrr/App.java,4\9\49228cfb19e0c2296fd6e2d0fcfe6ded1f7cb324
 c
 3src/main/java/by/jrr/controller/MainController.java,f\9\f9a1de18b1f1f44e945d2aaa07c70380d6f22f6a
+V
+&src/main/java/by/jrr/stat/Success.java,9\a\9a4cf46966c9e85788d7e1a66a363a000b5b9035
+V
+&src/main/java/by/jrr/stat/Mistake.java,5\c\5c9f340a7197472641cfa4b8d46a506139c5a448

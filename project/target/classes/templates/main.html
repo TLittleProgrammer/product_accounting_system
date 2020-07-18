@@ -145,7 +145,7 @@
 </div>
 <div class="modal fade" id="exampleModalSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="#" th:action="@{/save_product}" th:object="${product}" method="post">
+        <form action="#" th:action="@{/set_product}" th:object="${product}" method="POST">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Set new product</h5>
@@ -165,7 +165,7 @@
                         <h6>Choose category</h6>
                         <label>
                             <select class="form-control form-control-sm">
-                                <option th:each="category : ${categories}" th:value="${category}" th:text="${category}"></option>
+                                <option th:each="category : ${categories}" th:text="${category}"></option>
                             </select>
                         </label>
                     </div>

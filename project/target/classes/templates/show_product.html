@@ -47,7 +47,9 @@
                     <p class="text-description" th:text="${product.description}"></p>
                     <hr>
                     <a class="btn btn-primary" type="button" data-toggle="modal" data-target="#exampleModalChange">Change some product fields</a>
-                    <a class="btn btn-danger" href="'delete/' + ${product.id}">Delete Product</a>
+                    <form action="#" th:action="@{/delete}" th:object="${product}" method="POST">
+                        <input type="submit" class="btn btn-danger" value="Delete all products" name="product">
+                    </form>
                 </div>
             </div>
         </div>
