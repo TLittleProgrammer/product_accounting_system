@@ -67,22 +67,22 @@
             </div>
             <div class="col-sm-3 sort">
                 <div class="sorting">
-                    <div>
+                    <form method="POST" th:action="@{/sort}">
                         <div class="h-2"><h2>Sort products by...</h2></div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio1" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="customRadio1" name="sortType" value="price" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio1">Price</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio2" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="customRadio2" name="sortType"  value="discount" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio2">Discount</label>
                         </div>
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="customRadio3" name="customRadio" class="custom-control-input">
+                            <input type="radio" id="customRadio3" name="sortType" value="category" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio3">Category</label>
                         </div>
-                        <button class="btn btn-primary btn-sort">Sort</button>
-                    </div>
+                        <input type="submit" class="btn btn-primary btn-sort" value="Sort">
+                    </form>
                 </div>
                 <div class="find">
                     <div class="h-2"><h2>Find products by...</h2></div>
@@ -165,7 +165,7 @@
                         <h6>Choose category</h6>
                         <label>
                             <select class="form-control form-control-sm">
-                                <option th:each="category : ${categories}" th:text="${category}"></option>
+                                <option th:each="category : ${categories}" th:text="${category}" name="category" th:value="${category}"></option>
                             </select>
                         </label>
                     </div>

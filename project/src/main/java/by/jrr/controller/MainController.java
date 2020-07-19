@@ -3,6 +3,7 @@ package by.jrr.controller;
 import by.jrr.bean.Category;
 import by.jrr.bean.Product;
 import by.jrr.repository.ProductRepository;
+import by.jrr.sort.Sort;
 import by.jrr.stat.Mistake;
 import by.jrr.stat.Success;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 @Controller
@@ -28,7 +31,6 @@ public class MainController {
         model.addAttribute("products", iterable);
         model.addAttribute("categories", Category.values());
         model.addAttribute(new Product());
-        model.addAttribute("productCategory", new String());
         return "main";
     }
 
@@ -61,12 +63,32 @@ public class MainController {
     }
 
     @PostMapping("/set_product")
-    public String setNewProduct(Product product, String productCategory, Model model) {
-        product.setCategory(productCategory);
+    public String setNewProduct(Product product, @RequestParam("category") String category, Model model) {
+        product.setCategory(category);
         productRepository.save(product);
 
         model.addAttribute("message", Success.PRODUCT_ADDED);
         return "success";
+    }
+
+    @PostMapping("/sort")
+    public String sortAllProducts(@RequestParam("sortType") String sortType, Model model) {
+        Iterable<Product> iterable = productRepository.findAll();
+        ArrayList<Product> products = new ArrayList<>();
+        for (Product product: iterable) {
+            products.add(product);
+        }
+        switch (sortType) {
+            case "price" : products.sort(Sort.sortByPrice); break;
+            case "discount" : products.sort(Sort.sortByDiscount); break;
+            case "category" : products.sort(Sort.sortByCategory); break;
+        }
+        Collections.reverse(products);
+        model.addAttribute("products", products);
+        model.addAttribute("categories", Category.values());
+        model.addAttribute(new Product());
+
+        return "main";
     }
 
 }
