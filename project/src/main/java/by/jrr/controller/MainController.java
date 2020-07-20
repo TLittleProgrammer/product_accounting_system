@@ -1,94 +1,57 @@
 package by.jrr.controller;
 
-import by.jrr.bean.Category;
 import by.jrr.bean.Product;
+import by.jrr.controller.controller_service.*;
 import by.jrr.repository.ProductRepository;
-import by.jrr.sort.Sort;
-import by.jrr.stat.Mistake;
-import by.jrr.stat.Success;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Optional;
 
 @Controller
 public class MainController {
 
     @Autowired
     private ProductRepository productRepository;
-    private Product productTransferredBetweenControllers;
 
     @GetMapping({"/", "/main"})
     public String main(Model model) {
-        Iterable<Product> iterable = productRepository.findAll();
-        model.addAttribute("products", iterable);
-        model.addAttribute("categories", Category.values());
-        model.addAttribute(new Product());
-        return "main";
+        return MainPage.mainPage(model, productRepository);
+    }
+
+    @GetMapping("/show_product/{id}")
+    public String getProductById(Model model, @PathVariable String id) {
+        return ShowProductPage.showProductPage(model, productRepository, id);
     }
 
     @PostMapping("/show_product")
-    public String mainGetProductById(@ModelAttribute("id") Long id, Model model) {
-        Optional<Product> iterable = productRepository.findById(id);
-        ArrayList<Product> product = new ArrayList<>();
-        iterable.ifPresent(product::add);
-        productTransferredBetweenControllers = product.get(0);
-
-        model.addAttribute("product", product.get(0));
-        model.addAttribute("categories", Category.values());
-        return "show_product";
+    public String getProductByIdSecond(Model model, @RequestParam("id") String id) {
+        return ShowProductPage.showProductPage(model, productRepository, id);
     }
 
     @PostMapping("/delete")
-    public String deleteProduct(Model model) {
-
-        if(productTransferredBetweenControllers != null) {
-            productRepository.delete(productTransferredBetweenControllers);
-            productTransferredBetweenControllers = null;
-
-            model.addAttribute("message", Success.PRODUCT_DELETE);
-            return "success";
-        }
-        else {
-            model.addAttribute("message", Mistake.MISTAKE_NO_SUCH_PRODUCT_EXISTS);
-            return "exception";
-        }
+    public String deleteProduct(Model model, @RequestParam("id") Long id) {
+        return DeleteProduct.deleteProduct(model, productRepository, id);
     }
 
     @PostMapping("/set_product")
-    public String setNewProduct(Product product, @RequestParam("category") String category, Model model) {
-        product.setCategory(category);
-        productRepository.save(product);
-
-        model.addAttribute("message", Success.PRODUCT_ADDED);
-        return "success";
+    public String setNewProduct(Model model, @RequestParam("category") String category, Product product) {
+        return SetNewProduct.setNewProduct(model, productRepository, category, product);
     }
 
     @PostMapping("/sort")
-    public String sortAllProducts(@RequestParam("sortType") String sortType, Model model) {
-        Iterable<Product> iterable = productRepository.findAll();
-        ArrayList<Product> products = new ArrayList<>();
-        for (Product product: iterable) {
-            products.add(product);
-        }
-        switch (sortType) {
-            case "price" : products.sort(Sort.sortByPrice); break;
-            case "discount" : products.sort(Sort.sortByDiscount); break;
-            case "category" : products.sort(Sort.sortByCategory); break;
-        }
-        Collections.reverse(products);
-        model.addAttribute("products", products);
-        model.addAttribute("categories", Category.values());
-        model.addAttribute(new Product());
-
-        return "main";
+    public String sortAllProducts(Model model, @RequestParam("sortType") String sortType) {
+        return SortAllProducts.sortAllProducts(model, productRepository, sortType);
     }
 
+    @PostMapping("/change_product_field")
+    public String changeProductField(Model model,
+                                     @RequestParam("field") String field,
+                                     @RequestParam("newValue") String newValue,
+                                     @RequestParam("id") String id) {
+        return ChangeProductField.changeProductField(model, productRepository, field, newValue, Long.valueOf(id));
+    }
 }

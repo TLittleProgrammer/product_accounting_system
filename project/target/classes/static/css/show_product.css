@@ -45,3 +45,7 @@ input.btn-danger {
 #exampleModalChange {
     transition: 2s;
 }
+
+.label {
+    display: none;
+}

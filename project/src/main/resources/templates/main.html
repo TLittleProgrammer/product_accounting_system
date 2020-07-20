@@ -57,7 +57,7 @@
                         <td th:text="${product.price}">Price</td>
                         <td th:text="${product.discount}">Discount</td>
                         <td>
-                            <p type="button" data-toggle="modal" data-target="#exampleModal">Open</p>
+                            <a th:href="@{'/show_product/' + ${product.id}}">Open</a>
                         </td>
                     </tr>
                     </tbody>
@@ -107,7 +107,7 @@
 
 <div class="modal fade" id="exampleModalChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <form class="modal-content" method="POST" th:action="@{/change_product_field}">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Change product field</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -118,29 +118,29 @@
                 <div class="input_id">
                     <h6>Input id product</h6>
                     <label>
-                        <input type="text" class="form-control" placeholder="Input id">
+                        <input type="text" class="form-control" placeholder="Input id" name="id">
                     </label>
                 </div>
                 <div class="choose_field">
                     <h6>Choose field</h6>
                     <label>
-                        <select class="form-control form-control-sm">
-                            <option>Name</option>
-                            <option>Category</option>
-                            <option>Price</option>
-                            <option>Discount</option>
-                            <option>Description</option>
+                        <select class="form-control form-control-sm" name="field">
+                            <option value="name">Name</option>
+                            <option value="category">Category</option>
+                            <option value="price">Price</option>
+                            <option value="discount">Discount</option>
+                            <option value="description">Description</option>
                         </select>
                     </label>
                     <label>
-                        <input type="text" class="form-control" placeholder="Input new value">
+                        <input type="text" class="form-control" placeholder="Input new value" name="newValue">
                     </label>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <input type="submit" class="btn btn-primary" placeholder="Save changes">
             </div>
-        </div>
+        </form>
     </div>
 </div>
 <div class="modal fade" id="exampleModalSave" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -164,8 +164,8 @@
                     <div class="category">
                         <h6>Choose category</h6>
                         <label>
-                            <select class="form-control form-control-sm">
-                                <option th:each="category : ${categories}" th:text="${category}" name="category" th:value="${category}"></option>
+                            <select class="form-control form-control-sm" name="category">
+                                <option th:each="category : ${categories}" th:text="${category}" th:value="${category}"></option>
                             </select>
                         </label>
                     </div>
@@ -193,27 +193,6 @@
             </div>
         </div>
         </form>
-    </div>
-</div>
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Name product</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="description-modal">
-                    <h6>Description</h6>
-                    <p></p>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <input type="submit" class="btn btn-primary" placeholder="Save changes">
-            </div>
-        </div>
     </div>
 </div>
 
