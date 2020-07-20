@@ -70,6 +70,10 @@
                     <form method="POST" th:action="@{/sort}">
                         <div class="h-2"><h2>Sort products by...</h2></div>
                         <div class="custom-control custom-radio">
+                            <input type="radio" id="customRadio4" name="sortType" value="name" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadio4">Name</label>
+                        </div>
+                        <div class="custom-control custom-radio">
                             <input type="radio" id="customRadio1" name="sortType" value="price" class="custom-control-input">
                             <label class="custom-control-label" for="customRadio1">Price</label>
                         </div>
@@ -86,13 +90,14 @@
                 </div>
                 <div class="find">
                     <div class="h-2"><h2>Find products by...</h2></div>
-                    <div class="form-group">
+                    <form class="form-group" th:action="@{/find_product_by}" method="POST">
                         <label for="inputState">Category</label>
-                        <select id="inputState" class="form-control">
+                        <select id="inputState" class="form-control" name="category">
+                            <option value="all">All categories</option>
                             <option th:each="category : ${categories}" th:value="${category}" th:text="${category}"></option>
                         </select>
-                        <div class="btn btn-primary">Search</div>
-                    </div>
+                        <input type="submit" class="btn btn-primary" value="Search">
+                    </form>
                 </div>
                 <div class="delete">
                     <form action="#" th:action="@{/delete}" method="post">

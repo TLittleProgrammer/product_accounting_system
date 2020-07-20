@@ -51,7 +51,7 @@
                         <label class="label">
                             <input type="text" class="btn btn-danger" th:value="${product.id}" name="id">
                         </label>
-                        <input type="submit" class="btn btn-danger" value="Delete all products">
+                        <input type="submit" class="btn btn-danger" value="Delete product">
                     </form>
                 </div>
             </div>
@@ -62,7 +62,7 @@
 
     <div class="modal fade" id="exampleModalChange" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <div class="modal-content">
+            <form class="modal-content" method="POST" th:action="@{/change_product_field}">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Change product field</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -71,25 +71,26 @@
                 </div>
                 <div class="modal-body">
                     <div class="choose_field">
+                        <input type="text" name="id" th:value="${product.id}" class="id">
                         <h6>Choose field</h6>
                         <label>
-                            <select class="form-control form-control-sm">
-                                <option>Name</option>
-                                <option>Category</option>
-                                <option>Price</option>
-                                <option>Discount</option>
-                                <option>Description</option>
+                            <select class="form-control form-control-sm" name="field">
+                                <option value="name">Name</option>
+                                <option value="category">Category</option>
+                                <option value="price">Price</option>
+                                <option value="discount">Discount</option>
+                                <option value="description">Description</option>
                             </select>
                         </label>
                         <label>
-                            <input type="text" class="form-control" placeholder="Input new value">
+                            <input type="text" class="form-control" placeholder="Input new value" name="newValue">
                         </label>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <input type="submit" class="btn btn-primary" placeholder="Save changes">
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 

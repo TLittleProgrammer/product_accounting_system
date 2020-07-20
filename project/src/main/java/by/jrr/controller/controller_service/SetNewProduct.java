@@ -2,6 +2,7 @@ package by.jrr.controller.controller_service;
 
 import by.jrr.bean.Product;
 import by.jrr.repository.ProductRepository;
+import by.jrr.stat.HTTP;
 import by.jrr.stat.Success;
 import org.springframework.ui.Model;
 
@@ -11,6 +12,6 @@ public class SetNewProduct {
         productRepository.save(product);
 
         model.addAttribute("message", Success.PRODUCT_ADDED);
-        return "success";
+        return HTTP.SUCCESS;
     }
 }

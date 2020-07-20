@@ -16,6 +16,7 @@ public class SortAllProducts {
             case "price" : products.sort(Sort.sortByPrice); break;
             case "discount" : products.sort(Sort.sortByDiscount); break;
             case "category" : products.sort(Sort.sortByCategory); break;
+            case "name" : products.sort(Sort.sortByName);
         }
         Collections.reverse(products);
         model.addAttribute("products", products);

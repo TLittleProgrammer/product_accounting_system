@@ -37,6 +37,11 @@ public class MainController {
         return DeleteProduct.deleteProduct(model, productRepository, id);
     }
 
+    @PostMapping("/deleteAll")
+    public String deleteAllProducts(Model model) {
+        return DeleteAllProducts.deleteAllProducts(model, productRepository);
+    }
+
     @PostMapping("/set_product")
     public String setNewProduct(Model model, @RequestParam("category") String category, Product product) {
         return SetNewProduct.setNewProduct(model, productRepository, category, product);
@@ -53,5 +58,10 @@ public class MainController {
                                      @RequestParam("newValue") String newValue,
                                      @RequestParam("id") String id) {
         return ChangeProductField.changeProductField(model, productRepository, field, newValue, Long.valueOf(id));
+    }
+
+    @PostMapping("/find_product_by")
+    public String findProductsBy(Model model, @RequestParam("category") String category) {
+        return FindProductBy.findProductBy(model, productRepository, category);
     }
 }
