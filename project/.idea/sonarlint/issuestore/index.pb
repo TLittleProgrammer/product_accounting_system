@@ -39,3 +39,5 @@ u
 Esrc/main/java/by/jrr/controller/controller_service/SetNewProduct.java,5\4\54b5e4d8a7a351b42e5b0506093af8a394224e7e
 w
 Gsrc/main/java/by/jrr/controller/controller_service/SortAllProducts.java,e\5\e575956ba59e72adc6bdf007f68e7e6727a0e020
+u
+Esrc/main/java/by/jrr/controller/controller_service/FindProductBy.java,b\7\b76633ee2d78f2a0b8439f2d64057a29bf435a07
